@@ -1,0 +1,33 @@
+footer{
+    font-size: 13px;
+    padding: 30px 10px;
+    background: #fff;
+    margin-left: -35px;
+    margin-right: -35px;
+}
+a{
+    color: #555
+}
+h5{
+    color: #3395e8;
+    margin-bottom: 32px;
+}
+.social-icon{
+    margin-right: 10px;
+    font-size: 25px;
+}
+.footer-ul{
+    padding: 0;
+}
+.footer-ul li{
+    list-style-type: none;
+}
+.icons-ul{
+    color: #3395e8;
+}
+.social-icon{
+    color: #ffb612;
+}
+.talk img {
+    border-radius: 50%;
+}

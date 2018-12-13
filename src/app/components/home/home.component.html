@@ -1,0 +1,293 @@
+<style>
+    .left {
+        float: left;
+        widows: 30%;
+        border: 1px solid red;
+    }
+
+    .container {
+        margin: auto;
+    }
+</style>
+<app-nav *ngIf="!isLoggedIn"></app-nav>
+<app-nav-logged-in *ngIf="isLoggedIn"></app-nav-logged-in>
+<section class="container-fluid nex-hero" style="background:#e9ecf1">
+    <h1>
+        Token sale information
+        <small>Everything you need to know about the NEX token sale</small>
+    </h1>
+</section>
+
+<section class="container-fluid save-the-date">
+    <div class="row">
+        <div class="container save-the-date-content" style="width:60%;">
+            <div class="row">
+                <h2 class="save-the-date-heading">Save the date</h2>
+                <div class="hex-divider-container">
+                    <div class="hex-divider">
+                        <div class="hex-left"></div> <span>The dates you need to know to participate</span>
+                        <div class="hex-right"></div>
+                    </div>
+                </div>
+                <div class="date-box exclamation aos-init aos-animate" data-aos="fade" data-aos-offset="50" data-aos-easing="ease-in-sine"
+                    data-aos-duration="200">
+                    <div class="the-date align-middle">
+                        <div class="date-container"> <span class="month"><img src="assets/img/icn_exclamation.svg" alt="Exclamation icon" class="icn-exclamation"></span></div>
+                    </div>
+                    <div class="post"> <span class="post-title">Important: beware of scams</span>
+                        <div class="post-content">
+                            The NEX token sale will occur in June on a date to be announced and will require contributions through the NEX extension
+                            with GAS or NEO.
+                            <strong>NEX will never ask you to send funds to any wallet address</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="date-box aos-init" data-aos="fade" data-aos-offset="50" data-aos-easing="ease-in-sine" data-aos-duration="200">
+                    <div class="the-date align-middle">
+                        <div class="date-container"> <span class="month">March</span> <span class="date">12th</span><span class="time">18:00 UTC</span></div>
+                    </div>
+                    <div class="post"> <span class="post-title">NEX opens registration for the token sale lotteries</span>
+                        <div class="post-content"> In the first round, we will conduct lotteries among all registered users to select participants for
+                            the token sale. The first lottery draw, will select up to 25,000 participants to contribute up
+                            to $1,000 each. A second lottery draw will select participants from the remaining users to fill
+                            any gaps left by participants who failed to register or wished to contribute under the maximum
+                            individual limit.
+                            <ul>
+                                <li class="list-title">To register for the lotteries you will need the following:</li>
+                                <li>Your passport or national ID number — <strong>This information must match your KYC documents</strong>                                    </li>
+                                <li>The country issuing your document</li>
+                            </ul>
+                            <a href="#" class="btn-kyc-details" data-toggle="modal" data-target="#KYC-details" title="Toggle KYC info modal"><i class="fa fa-question-circle"></i> What is Know Your Customer (KYC)?</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="date-box aos-init" data-aos="fade" data-aos-offset="50" data-aos-easing="ease-in-sine" data-aos-duration="200">
+                    <div class="the-date align-middle">
+                        <div class="date-container"> <span class="month">March</span> <span class="date">30th</span> <span class="time">18:00 UTC</span>                            </div>
+                    </div>
+                    <div class="post"> <span class="post-title pb-0">Lottery registration closes</span> </div>
+                </div>
+                <div class="date-box lottery-results aos-init" data-aos="fade" data-aos-offset="100" data-aos-easing="ease-in-sine" data-aos-duration="200">
+                    <div class="the-date align-middle">
+                        <div class="date-container"> <span class="month">March</span> <span class="date">31st</span> <span class="time">18:00 UTC</span>                            </div>
+                    </div>
+                    <div class="post"> <span class="post-title">25,000 first lottery draw winners are announced on our site</span>
+                        <div class="post-content"> Winners of the first lottery draw will receive a number that identifies them uniquely in the KYC
+                            process. This number can be reproduced from a user's registration information using a deterministic
+                            algorithm that we will publish after the first lottery draw.
+                            <span class="post-title mt-4">First round KYC process opens for winners of the first lottery draw</span>
+                            <div class="post-content"> All winners will be required to go through our KYC process.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="date-box aos-init" data-aos="fade" data-aos-offset="50" data-aos-easing="ease-in-sine" data-aos-duration="200">
+                    <div class="the-date align-middle">
+                        <div class="date-container"> <span class="month">April</span> <span class="date">8th</span> <span class="time">16:00 UTC</span>                            </div>
+                    </div>
+                    <div class="post"> <span class="post-title pb-0">First round KYC closes for winners of the first lottery draw</span> </div>
+                </div>
+                <div class="date-box aos-init" data-aos="fade" data-aos-offset="50" data-aos-easing="ease-in-sine" data-aos-duration="200">
+                    <div class="the-date align-middle">
+                        <div class="date-container"> <span class="month">April</span> <span class="date">8th</span> <span class="time">18:00 UTC</span>                            </div>
+                    </div>
+                    <div class="post"> <span class="post-title">Second lottery draw winners announced</span>
+                        <div class="post-content"> Any unregistered spots from the first lottery will be filled through a second lottery draw and those
+                            winners will be announced.
+                        </div>
+                        <span class="post-title mt-4">Second round KYC process opens for winners of the second lottery draw</span>
+                        <div class="post-content"> All winners will be required to go through our second round KYC process.
+                        </div>
+                    </div>
+                </div>
+                <div class="date-box aos-init" data-aos="fade" data-aos-offset="50" data-aos-easing="ease-in-sine" data-aos-duration="200">
+                    <div class="the-date align-middle">
+                        <div class="date-container"> <span class="month">April</span> <span class="date">14th</span> </div>
+                    </div>
+                    <div class="post"> <span class="post-title pb-0">First KYC closes for winners of the second lottery draw</span> </div>
+                </div>
+                <div class="date-box aos-init" data-aos="fade" data-aos-offset="50" data-aos-easing="ease-in-sine" data-aos-duration="200">
+                    <div class="the-date align-middle">
+                        <div class="date-container"> <span class="month">April</span> <span class="date">14 - 20</span> </div>
+                    </div>
+                    <div class="post"> <span class="post-title pb-0">A manual review of accounts we deem necessary. We will not accept email requests for manual reviews.</span>                        </div>
+                </div>
+                <div class="date-box aos-init" data-aos="fade" data-aos-offset="50" data-aos-easing="ease-in-sine" data-aos-duration="200">
+                    <div class="the-date align-middle">
+                        <div class="date-container"> <span class="month">April</span> <span class="date">21 - 30</span> </div>
+                    </div>
+                    <div class="post"> <span class="post-title pb-0">Second round of KYC begins for lottery winners who passed KYC round 1 and opted to participate in the second portion of the ICO.</span>                        </div>
+                </div>
+                <div class="date-box aos-init" data-aos="fade" data-aos-offset="50" data-aos-easing="ease-in-sine" data-aos-duration="200">
+                    <div class="the-date align-middle">
+                        <div class="date-container"> <span class="month">July</span> <span class="date">TBA</span> </div>
+                    </div>
+                    <div class="post"> <span class="post-title pb-0">The NEX token sale begins</span> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container-fluid token-sale">
+    <div class="row">
+        <div class="container token-sale-content">
+            <div class="row">
+                <h2 class="token-sale-specifics-heading">Token sale specifics</h2>
+                <div class="hex-divider-container">
+                    <div class="hex-divider">
+                        <div class="hex-left"></div> <span>Two rounds of sales for fair distribution</span>
+                        <div class="hex-right"></div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row token-sale-details text-center" style="margin:auto">
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="detail-icon-container">
+                                <div class="detail-icon"> <img class="detail-icon" src="assets/img/icn_token_stack.svg" alt="Token stack icon"> </div>
+                            </div>
+                            <div class="specifics">
+                                <p>Max supply</p> <span class="token-sale-highlight">
+                 50 million
+                 </span> </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="detail-icon-container">
+                                <div class="detail-icon"> <img class="detail-icon" src="assets/img/icn_ico_amount.svg" alt="ICO amount icon"> </div>
+                            </div>
+                            <div class="specifics">
+                                <p>ICO sale amount</p> <span class="token-sale-highlight">
+                 25 million
+                 </span> </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-4">
+                            <div class="detail-icon-container">
+                                <div class="detail-icon"> <img class="detail-icon" src="assets/img/icn_token_price.svg" alt="Token price icon"> </div>
+                            </div>
+                            <div class="specifics no-border">
+                                <p>Price for both rounds</p> <span class="token-sale-highlight">
+                 1 Nex = $1.00 <small>USD</small>
+                 </span> </div>
+                        </div>
+                    </div>
+                    <div class="round-container">
+                        <div class="row round-details-container" style="margin:auto">
+                            <div class="col-sm-12 col-md-12 col-lg-6 aos-init" data-aos="" data-aos-offset="150" data-aos-easing="ease-in-sine" data-aos-duration="300">
+                                <div class="round-detail-container" style="margin:10px;">
+                                    <div class="top-detail"> <span class="round-title">Round 1</span>
+                                        <p>The first round will occur in <strong>May and last for approximately 1 day</strong>                                            in estimated block time. We will post the open and close block numbers prior
+                                            to the sale. </p>
+                                    </div>
+                                    <div class="bottom-detail"> <span class="contribution">Maximum contribution</span> <span class="contribution-number">$1,000<small>.00</small></span>                                        <small class="footnote">Per person</small> </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6 aos-init" data-aos="" data-aos-offset="150" data-aos-easing="ease-in-sine" data-aos-duration="300">
+                                <div class="round-detail-container" style="margin:10px;">
+                                    <div class="top-detail"> <span class="round-title">Round 2</span>
+                                        <p>If all NEX tokens are not sold after the first round ICO, another drawing will be
+                                            held to select a group of registrants who requested to participate in the second
+                                            round ICO. <strong>This round will last for 2 additional days or until all tokens are sold.</strong>                                            </p>
+                                    </div>
+                                    <div class="bottom-detail"> <span class="contribution">Maximum contribution</span> <span class="contribution-number">$9,000<small>.00</small></span>                                        <small class="footnote">Per person</small> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container-fluid accepted-tokens">
+    <div class="row accepted-tokens-content" style="margin:auto">
+        <div class="col-md-10 mx-auto text-center">
+            <div class="accepted-tokens-icons"> <img src="assets/img/icn_neo.svg" alt="NEO icon" class="icn-neo aos-init aos-animate" data-aos="zoom-in-down"
+                    data-aos-offset="150" data-aos-easing="ease-in-sine" data-aos-duration="350"> <img src="assets/img/icn_gas.svg"
+                    alt="GAS icon" class="icn-gas aos-init aos-animate" data-aos="zoom-in-down" data-aos-offset="150" data-aos-easing="ease-in-sine"
+                    data-aos-duration="350"> </div>
+            <h3>We will accept NEO and GAS for the token sale</h3>
+            <p>The price of NEO and GAS will be calculated through a 10-day moving average on prices from the highest volume
+                exchange at the time of publication of the token sale smart contract to NEO MainNet.</p>
+            <div class="coming-soon-btn"> <span>We will publish the rate before the sale</span> </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+<section id="faq">
+    <div class="bottom-left-triangle-block"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-center">Frequently Asked Questions</h2>
+                <div class="hex-divider-container">
+                    <div class="hex-divider">
+                        <div class="hex-left"></div>
+                        <span>How can we help you?</span>
+                        <div class="hex-right"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row faq-row">
+            <div class="col-xs-12 col-sm-6 col-md-6  faq-question">
+                How can I register for the lottery?
+            </div>
+            <a href="#" class="faq-foldout pull-right">
+                                                         <i class="fa fa-angle-down"></i>
+                                                         </a>
+            <div class="col-xs-12 col-sm-6 col-md-6 faq-answer">
+                Lottery registration is closed.
+            </div>
+        </div>
+        <div class="row faq-row">
+            <div class="col-xs-12 col-sm-6 col-md-6  faq-question">
+                Is registration first come first served?
+            </div>
+            <a href="#" class="faq-foldout pull-right">
+                                                         <i class="fa fa-angle-down"></i>
+                                                         </a>
+            <div class="col-xs-12 col-sm-6 col-md-6 faq-answer">
+                No, the lottery is random and dictated by chance. It does not matter when you submit your documents, as long as it is before
+                March 30 18:00 UTC.
+            </div>
+        </div>
+        <div class="row faq-row">
+            <div class="col-xs-12 col-sm-6 col-md-6  faq-question">
+                What countries are excluded from entering the lottery?
+            </div>
+            <a href="#" class="faq-foldout pull-right">
+                                                         <i class="fa fa-angle-down"></i>
+                                                         </a>
+            <div class="col-xs-12 col-sm-6 col-md-6 faq-answer">
+                The following countries are not allowed: US, Algeria, Bolivia, Vietnam, Indonesia, Kyrgyzstan, Lebanon, Morocco, Namibia,
+                Nepal, Pakistan, Ecuador, Myanmar, Ivory Coast, Cuba, Iran, North Korea, Syria. <br><br>
+            </div>
+        </div>
+        <div class="row faq-row">
+            <div class="col-xs-12 col-sm-6 col-md-6  faq-question">
+                What exchanges will you be on once the token sale is complete?
+            </div>
+            <a href="#" class="faq-foldout pull-right">
+                                                         <i class="fa fa-angle-down"></i>
+                                                         </a>
+            <div class="col-xs-12 col-sm-6 col-md-6 faq-answer">
+                We expect that several exchanges will want to list NEX. We will release that information on a later date.
+            </div>
+        </div>
+        <div class="row d-none d-md-block">
+            <div class="col-md-12">
+                <!-- <img src="assets/img/kyc_graphic.png" alt="" class="img-fluid mt-5"> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

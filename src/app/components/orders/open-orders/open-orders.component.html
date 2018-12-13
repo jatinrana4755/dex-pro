@@ -1,0 +1,80 @@
+<div class="order-div">
+  <div class="container-fluid main-div px-0">
+    <h5 class="heading text-center mb-4 open-orders">OPEN ORDERS</h5>
+      <div class="col-md-5 mt-5" *ngIf="dashboard">
+    <div *ngIf="allDataList?.length > 0" class="row" >
+        <div class="col-md-6 pl-0">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text text-white bg-info" id="basic-addon1">From </span>
+              </div>
+              <input type="date" [(ngModel)]="date1" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text text-white bg-info" id="basic-addon1">To</span>
+              </div>
+              <input type="date" [(ngModel)]="date2" class="form-control">
+            </div>
+        </div>
+    </div>
+  </div>
+    <div class="table-responsive" style="position: relative;margin: 0px;padding: 0px;overflow: auto;overflow-x: hidden;height: 421px;">
+      <table iid="tech-companies-1" class="table table-small-font no-mb table-striped" style="position: relative">
+        
+        <thead class="py-3 px-3">
+          <tr style="cursor: pointer; color: #337ab7;">
+            <th (click)="orderByField = 'date'; reverseSort = !reverseSort">Date
+              <span *ngIf="orderByField=='date'">
+                <span [hidden]="reverseSort">
+                  <i class="fa fa-caret-up"></i>
+                </span><span [hidden]="!reverseSort">
+                  <i class="fa fa-caret-down"></i>
+                </span>
+              </span>
+            </th> 
+            <th>Type <i></i></th>
+            <th (click)="orderByField = 'price'; reverseSort = !reverseSort">Price
+              <span *ngIf="orderByField=='price'">
+                <span [hidden]="reverseSort">
+                  <i class="fa fa-caret-up"></i>
+                </span><span [hidden]="!reverseSort">
+                  <i class="fa fa-caret-down"></i>
+                </span>
+              </span>
+            </th> 
+            <th (click)="orderByField = 'volume'; reverseSort = !reverseSort">Amount
+              <span *ngIf="orderByField=='volume'">
+                <span [hidden]="reverseSort">
+                  <i class="fa fa-caret-up"></i>
+                </span><span [hidden]="!reverseSort">
+                  <i class="fa fa-caret-down"></i>
+                </span>
+              </span>
+            </th> 
+            <th>Total<i></i></th>
+            <th *ngIf="dashboard">Action &nbsp;&nbsp;<i class="far fa-trash-alt"></i></th>
+          </tr>
+        </thead>       
+        <tbody *ngIf="allDataList?.length > 0">
+          <tr *ngFor="let data of allDataList | customDate : date1 : date2 | sort: orderByField:  reverseSort">
+            <td>{{data.date | date : 'shortDate' }}</td>
+            <td>{{data.type}}</td>
+            <td>{{data.price |decimal|float}}</td>
+            <td>{{data.volume |decimal|float}}</td>
+            <td>{{data.price * data.volume |decimal|float}}</td>
+            <td *ngIf="dashboard"> <button (click)="deleteOrder(data.id,data.type)" [disabled]='data.market' style="background:none;border:none;color: red"><i class="far fa-trash-alt"></i></button></td>
+          </tr>
+        </tbody>
+      <div class="text-center loader-div"  *ngIf="loadercoin">
+        <i class="fa fa-spinner fa-spin" id="loader"></i>
+      </div>
+      </table>
+          <div *ngIf="allDataList?.length == 0 && !loadercoin" class="no-data" >
+            <p style="font-size: 12px;font-weight: 501;">No open orders  Available</p>
+          </div>
+    </div>
+  </div>
+</div>

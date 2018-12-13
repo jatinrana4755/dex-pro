@@ -1,0 +1,105 @@
+.navbar{
+    padding: 5px 0;
+    z-index: 999;
+    box-shadow: 0 0 5px #ddd;
+    background: #fff;
+    .nav-item{
+        margin-right: 20px;
+        .nav-link {
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            &:hover{
+                color: blue!important;
+            }
+        }
+    }
+    .copy-address {
+        position: absolute;
+          top: 15px;
+          right: 29px;
+      }
+      .redirectToEtherScanWallet {
+        position: absolute;
+      top: 15px;
+      right: 6px;
+  }
+    .dropdown-item{
+        text-transform: uppercase;
+        a{
+            text-transform: uppercase;
+        }  
+    } 
+}
+.navbar-brand{
+    margin-left:3rem;
+}
+.starter-modal-content {
+    background-color: #f6f7c9;
+    margin: 0px 30px 0px 30px;
+    padding: 15px 15px 15px 15px;
+    border-radius: 7px;
+    text-align: left;
+  }
+  .modal {
+    display:none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.button {
+    background: #ee9209 none repeat scroll 0 0;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    color: #fff;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    height: 45px;
+    letter-spacing: 1px;
+    line-height: 45px;
+    padding: 0 30px;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out 0s;
+  }
+  #privatekey{
+    white-space: nowrap;
+    width: 175px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+.tooltip-copy, .tooltip-ext{
+    position: absolute;
+    right: 0;
+    display: none;
+    padding: 10px;
+    background: #555;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 3px;
+    top: 25px;
+}
+.copy-address:hover .tooltip-copy{
+    display: inline-block
+}
+.redirectToEtherScanWallet:hover .tooltip-ext{
+    display: inline-block
+}
+.active-link{
+    color: blue!important;
+}
+  @media (max-width: 992px){
+    .navbar-light .navbar-brand {
+        margin-left: 60px;
+    }
+    .nav-link,.dropdown-item{
+        text-align: right
+    } 
+  }

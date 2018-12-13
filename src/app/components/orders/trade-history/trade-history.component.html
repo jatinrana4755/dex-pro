@@ -1,0 +1,75 @@
+<div class="container-fluid main-div" style="padding-top: 100px!important;">
+  <h4 class="heading text-center mb-4">Trade History</h4>
+  <div *ngIf="myTrade?.length>0" class="col-md-5 mt-5">
+    <div class="row">
+        <div class="col-md-6 pl-0">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text text-white bg-info" id="basic-addon1">From </span>
+              </div>
+              <input type="date" [(ngModel)]="date1" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-6"> 
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text text-white bg-info" id="basic-addon1">To</span>
+              </div>
+              <input type="date" [(ngModel)]="date2" class="form-control">
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="table-responsive" style="position: relative;margin: 0px;padding: 0px;overflow: auto;overflow-x: hidden;max-height: 721px;min-height: 150px;">
+    <table id="tech-companies-1" class="table table-small-font no-mb table-striped">
+      <thead>
+        <tr>
+          <th (click)="orderByField = 'date'; reverseSort = !reverseSort">Date
+            <span *ngIf="orderByField=='date'">
+              <span [hidden]="reverseSort">
+                <i class="fa fa-caret-up"></i>
+              </span><span [hidden]="!reverseSort">
+                <i class="fa fa-caret-down"></i>
+              </span>
+            </span>
+          </th> 
+          <th>Type</th>
+          <th (click)="orderByField = 'price'; reverseSort = !reverseSort">Price
+            <span *ngIf="orderByField=='price'">
+              <span [hidden]="reverseSort">
+                <i class="fa fa-caret-up"></i>
+              </span><span [hidden]="!reverseSort">
+                <i class="fa fa-caret-down"></i>
+              </span>
+            </span>
+          </th> 
+          <th (click)="orderByField = 'volume'; reverseSort = !reverseSort">Amount
+            <span *ngIf="orderByField=='volume'">
+              <span [hidden]="reverseSort">
+                <i class="fa fa-caret-up"></i>
+              </span><span [hidden]="!reverseSort">
+                <i class="fa fa-caret-down"></i>
+              </span>
+            </span>
+          </th> 
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="myTrade?.length>0">
+        <tr *ngFor="let trade of myTrade | customDate : date1 : date2 | sort: orderByField:  reverseSort ">
+          <td>{{trade.date | date: 'shortDate'}}</td>
+          <td>{{trade.type}}</td>
+          <td>{{trade.price}}</td>
+          <td>{{trade.volume}}</td>
+          <td>{{trade.price * trade.volume |decimal|float}}</td>
+        </tr>
+      </tbody>
+      <div class="text-center loader-div"  *ngIf="tradeLoader">
+        <i class="fa fa-spinner fa-spin"  id="loader"></i>
+      </div>
+    </table>
+        <div class="no-data" *ngIf="myTrade?.length==0 && !tradeLoader">
+          <p style="font-size: 12px;font-weight: 501;">No Balance History Available</p>
+        </div>
+  </div>
+</div>

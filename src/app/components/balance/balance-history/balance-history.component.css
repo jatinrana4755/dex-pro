@@ -1,0 +1,31 @@
+.main-div{
+    min-height: 80vh
+}
+.table{
+    background: #fff;
+    border-radius: 10px;
+}
+.table thead th{
+    font-size: 14px;
+    border-bottom: 1px solid #dee2e6;
+    border-top: none;
+}
+.table td {
+    border-top: none;
+}
+.button {
+    font: bold 11px Arial;
+    text-decoration: none;
+    background-color: #ECEBF1;
+    color: #141314;
+    padding: 2px 6px 2px 6px;
+    border-top: 1px solid #CCCCCC;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+    border-left: 1px solid #CCCCCC;
+  }
+  #loader{
+    font-size: 40px;
+    text-align: center;
+    color: #049ddc;
+}

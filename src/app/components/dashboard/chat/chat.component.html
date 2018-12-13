@@ -1,0 +1,100 @@
+<!-- floating chat div -->
+<div class="floating-container">
+  <button class="chat-btn" (click)="showChatbox()">
+    <div class="btn-ico">
+        <i class="fas fa-comments"></i>
+    </div>
+    <div class="btn-text">
+      Chat
+    </div>
+  </button>
+</div>
+<div class="chat-box" id="chatBox">
+  <div class="container-chat">
+    <div class="chatbox-header text-white px-3 py-2">
+      <div class="row">
+        <div class="col-md-12">
+          <span>
+                <i class="fas fa-comments"></i>&nbsp;&nbsp;Chat
+              </span>
+        </div>
+        <div class="col-md-12 py-2">
+          <label class="mb-0" for="languageFilter">Choose language: </label>
+          <select [(ngModel)]="selectedLang" (change)="languageSelected(selectedLang)" class="language-filter" id="languageFilter">
+                    <option *ngFor="let l of languages" [value]="l.id">{{l.name}}</option>
+                </select>
+        </div>
+      </div>
+
+      <span class="close-chat" (click)="closeChatbox()">
+        <i class="far fa-times-circle"></i>
+      </span>
+    </div>
+    <div class="chatbox-body p-3" id="chatboxBody" >
+      <div class="container-chat"  id ="scrollBottom">
+        <div *ngIf="userName != ''">
+          <div *ngIf="messages?.length == 0 ">
+            No messsages  to display!
+          </div>
+          <div *ngFor="let m of messages">
+            <div [ngClass]="{'chat-bubble' : userName != m?.username, 'chat-bubble-self' : userName == m?.username}">
+              <div class="row bubble-row">
+                <div class="user-ico" style="display: grid;align-items: center;justify-items: center">
+                  <span class="initial">
+                    {{m?.username.substring(0,1)}}
+                  </span>
+                </div>
+                <div class="user-msg">
+                    <small class="username">{{m?.username}}</small>
+                    <div class="message">{{m?.message}}</div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div *ngIf="userName == ''">
+        <!-- <div *ngIf="loadChat">Loading.....</div> -->
+        <div>Please set user name first to continue</div>
+        <button data-target="#setUserNameModal" data-toggle="modal" (click)="closeChatbox()" class="set-user-btn"><i class="far fa-user"></i>&nbsp;&nbsp; Set Username</button>
+      </div>
+    </div>
+    <div class="chatbox-footer" *ngIf="userName != ''">
+      <form>
+        <input type="text" class="chat-input" [(ngModel)]="chat_message" (input)="checkinput()" name="chat_message" placeholder="Type your message here.." required>
+        <button class="send-btn bg-info text-white"   [disabled]="submit" (click)="sendMessage()" type="submit" >
+          <i class="fab fa-telegram-plane"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="setUserNameModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Set Username</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div *ngIf="userId else notLoggedIn">
+          <input class="form-control" type="text" placeholder="Enter username" [(ngModel)]="userName">
+        </div>
+        <ng-template #notLoggedIn>
+          Please login to set username
+        </ng-template>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal" (click)="setUserName()" *ngIf="userId else login">Set</button>
+        <ng-template #login><button type="button" class="btn btn-default" data-dismiss="modal" routerLink="/change-wallet">Login</button></ng-template>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>

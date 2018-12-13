@@ -1,0 +1,117 @@
+<!-- <app-nav></app-nav> -->
+<app-nav *ngIf="!isLoggedIn"></app-nav>
+<app-nav-logged-in *ngIf="isLoggedIn"></app-nav-logged-in>
+<div class="container">
+  <div class="container-fluid bg-2 text-center ">
+    <div class="row">
+      <div class="col-md-10 col-lg-7 mx-auto container-change">
+        <div class="card card-body card-wrapper">
+          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item mx-auto">
+              <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home"
+                aria-selected="true"><i class="fas fa-key"></i>&nbsp;&nbsp; Private Key</a>
+            </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile"
+                aria-selected="false"><i class="fas fa-cloud-upload-alt"></i>&nbsp;&nbsp;File Uplaod</a>
+            </li>
+            <li class="nav-item mx-auto">
+              <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact"
+                aria-selected="false"><i class="fas fa-address-card"></i>&nbsp;&nbsp;MetaMask</a>
+            </li>
+          </ul>
+          <div class="tab-content py-4" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <form>
+                    
+              <div class="form-group text-left">
+                  <div class="uplaod-icon">
+                      <img src="/assets/img/key.svg" alt="">
+                  </div>
+                  <label for="" class="label-input">Enter your private key</label>
+                <input type="text" [(ngModel)]="privateKey" name="privateKey" placeholder="Enter your private key" class="form-control" autocomplete="off">
+              </div>
+              <button type="submit" (click)="submitP()" class="btn btn-outline-success "><i class="far fa-check-circle"></i>&nbsp;&nbsp; Submit 
+                <span class="fa-spin loading-login" *ngIf="loadingP"><i class="fas fa-spinner"></i></span>
+              </button>
+            </form>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+              <form>
+              <div class="form-group text-left upload-wrapper">
+                <div class="uplaod-icon">
+                  <img src="/assets/img/outbox.svg" alt="">
+                </div>
+                <div class="file-upload-div">
+                  <div class="upload-btn-wrapper">
+                    <button class="btn-uplaod">Select a file</button>
+                    <label for="" id="selectedFile"></label>
+                    <input type='file' id="file" multiple (change)='openFile($event)' />
+                  </div>
+                </div>
+                <!-- <input type='file' accept='text/plain' id="file" multiple (change)='openFile($event)' class="form-control"> -->
+              </div>
+              <div class="form-group text-left">
+                <label for="" class="label-input">Enter password</label>
+                <input type='password' [(ngModel)]="password" name="password" placeholder="Enter password" class="form-control" autocomplete="off" (input)="checkValide()">
+              </div>
+              <button  type="submit" (click)="submitF()" class="btn btn-outline-success" [disabled]="disableButton"><i class="far fa-check-circle"></i>&nbsp;&nbsp; Submit
+                <span class="fa-spin loading-login" *ngIf="loadingF"><i class="fas fa-spinner"></i></span></button>
+              </form>
+            </div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+             <form>
+              <div class="form-group text-left">
+                  <div class="uplaod-icon">
+                      <img src="/assets/img/metamask.png" alt="">
+                  </div>
+                 <!-- <label for="" class="label-input">Enter address</label> 
+                 <input type='text' [(ngModel)]="address" name="address" placeholder="Enter address" class="form-control"> -->
+              </div>
+              <button type="submit" (click)="unlockWalletViaMetamask()" class="btn btn-outline-success "><i class="fas fa-unlock-alt"></i>&nbsp;&nbsp; Unlock MetaMask <span class="fa-spin loading-login" *ngIf="loadingM"><i class="fas fa-spinner"></i></span></button>
+            </form>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- <div class="col-md-3">
+      <ul class="nav nav-tabs">
+        <li class="active">
+          <label class="radio-inline btn btn-default btn-lg">
+            private key
+            <input type="radio" name="file" [(ngModel)]="optionVal" value="1">
+          </label>
+          <div *ngIf="optionVal==1">
+            private key
+            
+          </div>
+        </li>
+
+        <label class="radio-inline btn btn-default btn-lg">
+          file
+          <input type="radio" name="File" [(ngModel)]="optionVal" value="2">
+        </label>
+        <div *ngIf="optionVal==2">
+          file upload
+          
+        </div>
+        <li></li>
+
+        <li>
+          <label class="radio-inline btn btn-default btn-lg">
+            MetaMask
+            <input type="radio" name="text" [(ngModel)]="optionVal" value="3">
+          </label>
+          <div *ngIf="optionVal==3">
+            
+          </div>
+        </li>
+      </ul>
+
+
+
+    </div> -->
+  </div>
+</div>

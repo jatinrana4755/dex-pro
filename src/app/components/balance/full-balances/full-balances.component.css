@@ -1,0 +1,53 @@
+.main-div{
+    min-height: 80vh
+}
+.table{
+     background: #fff;
+}
+.table thead th{
+    font-size: 14px;
+    border-bottom: 1px solid #dee2e6;
+    border-top: none;
+}
+.table td {
+    border-top: none;
+}
+.filter-div{
+    padding: 25px 0;
+    background: #fff;
+    border-radius: 10px 10px 0 0;
+}
+.pretty .state label {
+    text-indent: 1.5em;
+}
+.loaderDiv{
+    position: absolute;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+    font-size: 25px;
+    background: #fff;
+    color: #19aada;
+    border-radius: 0 0 10px 10px;
+}
+/* .table-div{ */
+    /* max-height: 60vh; */
+    /* overflow: auto; */
+/* } */
+#loaderFull{
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    /* margin-left: -50px; */
+    bottom: -65px;
+    font-size:40px;
+    color: #049ddc;
+    
+}
+#deposit{
+    top:15%;
+}
+#withdraw{
+    top:15%;
+}

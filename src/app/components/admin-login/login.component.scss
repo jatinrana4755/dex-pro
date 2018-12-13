@@ -1,0 +1,54 @@
+.box{
+    // position: absolute;
+    min-height: 200px;
+    /* min-width: 500px; */
+    z-index: 15;
+    /* left: 50%; */
+    // margin-top: 20%;
+    left: 0px;
+    padding: 15px;
+    
+}
+.button{
+    background-color: #032843;
+    color: #fff;
+}
+.effect1{
+	-webkit-box-shadow: 0 10px 6px -6px #777;
+	   -moz-box-shadow: 0 10px 6px -6px #777;
+	        box-shadow: 0 10px 6px -6px #777;
+}
+.create-row{
+    height: 75vh;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+h1{
+    text-align: center;
+    font-size: 25px;
+}
+body{
+    background: #f2f4f7;
+}
+.pb-20{
+    padding-bottom: 20px;
+}
+
+
+.loading-login{
+    animation-name: loadingSpinner;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    display: inline-block;
+    animation-iteration-count: infinite;    
+    margin-left: 10px;
+}
+
+@keyframes loadingSpinner{
+    from {
+        transform: rotate(0deg);
+    } to {
+        transform: rotate(360deg);
+    }
+}

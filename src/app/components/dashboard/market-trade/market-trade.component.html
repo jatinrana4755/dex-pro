@@ -1,0 +1,215 @@
+
+<div style="padding:6px;">
+  <div class="buy-sell">
+    <ul class="nav nav-tabs px-3 pb-3 pt-4" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" href="#markettrade" role="tab" data-toggle="tab">Market Trade</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#mytrade" role="tab" data-toggle="tab">My Trade</a>
+      </li>
+    </ul>
+
+    <div class="row px-3">
+      <!-- Tab panes -->
+      <div class="tab-content" style="width: 100%">
+        <div role="tabpanel" class="tab-pane active" id="markettrade">
+          <div class="">
+            <div class="trading">
+              <div data-v-05e05f85="">
+                <table id="tech-companies-1" class="table table-small-font no-mb table-striped" style="position: relative">
+                  <colgroup>
+                    <col width="200px">
+                    <col width="250px">
+                    <col width="250px">
+                    <col width="250px">
+                  </colgroup>
+                  <thead>
+                    <tr style="cursor: pointer; color: #337ab7; ">
+                      <th style="padding-left: 50px;">Date</th>
+                      <th style="padding-left: 50px;">Price (ETH)</th>
+                      <th style="padding-left: 50px;">Type</th>
+                      <th>Amount (IMDX)</th>
+                      <th style="padding-right: 50px;">Total</th>
+                    </tr>
+                  </thead>
+                </table>
+                <div class="vb vb-visible" style="height: 205px;  position: relative; overflow: hidden;">
+                  <div class="vb-content" style="display: block; overflow-x: hidden; overflow-y: scroll; height: 100%; width: calc(100% + 19px);">
+                    <table id="tech-companies-1" class="table table-small-font no-mb table-striped" style="position: relative">
+                      <colgroup>
+                        <col width="200px">
+                        <col width="250px">
+                        <col width="250px">
+                        <col width="250px">
+                      </colgroup>
+                       <tbody *ngIf="markettrades?.length>0">
+                        <tr *ngFor="let markettrade of markettrades" style="height: 30px; font-size: 13px; border-style: solid; border-width: 1px 0px; border-color: rgb(223, 227, 236);">
+                          <td class="text">{{markettrade?.date | date: 'shortDate'}}</td>
+                          <td>
+                            <div style="padding-right: 80px; text-align: right;">
+                              <span style="color: rgb(0, 138, 172);">
+                                <font style="vertical-align: inherit;">
+                                  <font style="vertical-align: inherit;">
+                                    {{markettrade?.price}}
+                                  </font>
+                                </font>
+                              </span>
+                            </div>
+                          </td>
+                          <td>
+                            <div style="padding-right: 52px; text-align: right;">
+                              <span style="color: rgb(0, 138, 172);">
+                                <font style="vertical-align: inherit;">
+                                  <font style="vertical-align: inherit;">
+                                    <span *ngIf="markettrade?.buyStatus" style="color:#058c6c">{{markettrade?.type}}</span>
+                                    <span *ngIf="!markettrade?.buyStatus" style="color:#b84e4e">{{markettrade?.type}}</span>
+                                  </font>
+                                </font>
+                              </span>
+                            </div>
+                          </td>
+                          <td>
+                            <div style="padding-right: 80px; text-align: right;">
+                              <span style="color: rgb(0, 138, 172);">
+                                <font style="vertical-align: inherit;">
+                                  <font style="vertical-align: inherit;">
+                                    {{markettrade?.volume|decimal|float}}
+                                  </font>
+                                </font>
+                              </span>
+                            </div>
+                          </td>
+                          <td>
+                            <div style="padding-right: 50px; text-align: right;">
+                              <span style="color: rgb(0, 138, 172);">
+                                <font style="vertical-align: inherit;">
+                                  <font style="vertical-align: inherit;">
+                                    {{markettrade?.price * markettrade?.volume |decimal|float}}
+                                  </font>
+                                </font>
+                              </span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody> 
+                    </table>
+                    <div class="text-center loader-div" style="padding: 35px;" *ngIf="loadermarket">
+                      <i class="fa fa-spinner fa-spin" id="loadermarket"></i>
+                    </div>
+                    <div class="no-data" *ngIf="markettrades?.length== 0  && !loadermarket">
+                      <p style="font-size: 12px;font-weight: 501;">There is no market trade history to show.</p>
+                    </div>
+                  </div>
+                  <div class="vb-dragger" style="position: absolute; height: 73px; top: 0px;">
+                    <div class="vb-dragger-styler"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane " id="mytrade">
+          <div class="col-lg-12 px-0">
+            <div class="trading">
+              <div data-v-05e05f85="">
+                <table id="tech-companies-1" class="table table-small-font no-mb table-striped" style="position: relative">
+                  <colgroup>
+                    <col width="200px">
+                    <col width="250px">
+                    <col width="250px">
+                    <col width="250px">
+                  </colgroup>
+                  <thead>
+                    <tr style="cursor: pointer; color: #337ab7; ">
+                      <th style="padding-left: 50px;">Date</th>
+                      <th style="padding-left: 50px;">Price (ETH)</th>
+                      <th style="padding-left: 50px;">Type</th>
+                      <th>Amount (IMDX)</th>
+                      <th style="padding-right: 50px;">Total</th>
+                    </tr>
+                  </thead>
+                </table>
+                <div class="vb vb-visible" style="height: 205px;  position: relative; overflow: hidden;">
+                  <div class="vb-content" style="display: block; overflow-x: hidden; overflow-y: scroll; height: 100%; width: calc(100% + 19px);">
+                    <table id="tech-companies-1" class="table table-small-font no-mb table-striped" style="position: relative">
+                      <colgroup>
+                        <col width="200px">
+                        <col width="250px">
+                        <col width="250px">
+                        <col width="250px">
+                      </colgroup>
+                      <tbody *ngIf="mytrades?.length>0">
+                        <tr *ngFor="let mytrade of mytrades" style="height: 70px; font-size: 13px; border-style: solid; border-width: 1px 0px; border-color: rgb(223, 227, 236);">
+
+                          <td class="text">{{mytrade?.date | date: 'shortDate'}}</td>
+
+                          <td>
+                            <div style="padding-right: 80px; text-align: right;">
+                              <span style="color: rgb(0, 138, 172);">
+                                <font style="vertical-align: inherit;">
+                                  <font style="vertical-align: inherit;">
+                                    {{mytrade?.price}}
+                                  </font>
+                                </font>
+                              </span>
+                            </div>
+                          </td>
+                          <td>
+                            <div style="padding-right: 52px; text-align: right;">
+                              <span style="color: rgb(0, 138, 172);">
+                                <font style="vertical-align: inherit;">
+                                  <font style="vertical-align: inherit;">
+                                    <span *ngIf="mytrade?.buyStatus" style="color:#058c6c">{{mytrade?.type}}</span>
+                                    <span *ngIf="!mytrade?.buyStatus" style="color:#b84e4e">{{mytrade?.type}}</span>
+                                  </font>
+                                </font>
+                              </span>
+                            </div>
+                          </td>
+                          <td>
+                            <div style="padding-right: 80px; text-align: right;">
+                              <span style="color: rgb(0, 138, 172);">
+                                <font style="vertical-align: inherit;">
+                                  <font style="vertical-align: inherit;">
+                                    {{mytrade?.volume|decimal|float}}
+                                  </font>
+                                </font>
+                              </span>
+                            </div>
+                          </td>
+                          <td>
+                            <div style="padding-right: 50px; text-align: right;">
+                              <span style="color: rgb(0, 138, 172);">
+                                <font style="vertical-align: inherit;">
+                                  <font style="vertical-align: inherit;">
+                                    {{mytrade?.price *mytrade?.volume |decimal|float}}
+                                  </font>
+                                </font>
+                              </span>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+
+                    </table>
+                    <div class="text-center loader-div" style="padding: 35px;" *ngIf="loadermytrade">
+                      <i class="fa fa-spinner fa-spin" id="loadermytrade"></i>
+                    </div>
+                    <div class="no-data" *ngIf="!loadermytrade && mytrades?.length==0">
+                      <p style="font-size: 12px;font-weight: 501;">There is no trade history to show.</p>
+                    </div>
+                  </div>
+                  <div class="vb-dragger" style="position: absolute; height: 73px; top: 0px;">
+                    <div class="vb-dragger-styler"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

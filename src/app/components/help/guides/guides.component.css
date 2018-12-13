@@ -1,0 +1,65 @@
+.guide-wrapper {
+  padding: 10px;
+  margin-top: 50px;
+  background: #fff;
+  overflow: auto
+}
+
+.right {
+  float: right;
+  width: 80%;
+  padding: 0 20px 0 ;
+  margin-top: 30px;
+}
+.list-group-item{
+    cursor: pointer;
+    font-size: 15px;
+    border-color: #eee;
+}
+.left {
+  float: left;
+  position: fixed;
+  width: 20%;
+  padding: 0 20px;
+  top: 90px;
+  left: 0;
+}
+.youtube-wrapper{
+    border-radius: 5px;
+    width: 80%;
+    height: 520px;
+    overflow: hidden;
+}
+.youtube-wrapper iframe{
+    border: none;
+    width: 100%;
+    height: 100%;
+    
+}
+.list-detail-div{
+    background: #fff;
+    box-shadow: 0px 0px 5px #eee;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 4px;
+}
+h6{
+    font-weight: 600;
+    color: #145aff;
+}
+@media only screen and (max-width: 992px) {
+  .left{
+    float:none;
+    width: 100%;
+    position: relative;
+    top: 35px;
+  }
+  .right{
+    float:none;
+    width: 100%;
+    margin-top: 50px
+  }
+  .youtube-wrapper{
+      width: 100%;
+  }
+}

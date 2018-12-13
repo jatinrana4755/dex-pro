@@ -1,0 +1,68 @@
+<!-- <app-header></app-header> -->
+<div class="container-fluid main-div" style="padding-top: 100px!important;">
+  <h4 class="heading text-center mb-4">Balance History</h4>
+  <h5 style="float:right">
+    <input *ngIf="balance?.length>0 " type="text" [(ngModel)]="searchItem" name="search" placeholder="Type here to search" class="form-control">
+  </h5>
+  <table class="table" style="position: relative;">
+    <thead>
+      <tr>
+        <th (click)="orderByField = 'date'; reverseSort = !reverseSort">Date
+          <span *ngIf="orderByField=='date'">
+            <span [hidden]="reverseSort">
+              <i class="fa fa-caret-up"></i>
+            </span><span [hidden]="!reverseSort">
+              <i class="fa fa-caret-down"></i>
+            </span>
+          </span>
+        </th>
+        <th (click)="orderByField = 'asset'; reverseSort = !reverseSort">Token
+          <span *ngIf="orderByField=='asset'">
+            <span [hidden]="reverseSort">
+              <i class="fa fa-caret-up"></i>
+            </span><span [hidden]="!reverseSort">
+              <i class="fa fa-caret-down"></i>
+            </span>
+          </span>
+        </th>
+        <th>Type</th>
+        <th (click)="orderByField = 'coin_name'; reverseSort = !reverseSort">Name
+          <span *ngIf="orderByField=='coin_name'">
+            <span [hidden]="reverseSort">
+              <i class="fa fa-caret-up"></i>
+            </span><span [hidden]="!reverseSort">
+              <i class="fa fa-caret-down"></i>
+            </span>
+          </span>
+        </th>
+        <th (click)="orderByField = 'amount'; reverseSort = !reverseSort">Amount
+          <span *ngIf="orderByField=='amount'">
+            <span [hidden]="reverseSort">
+              <i class="fa fa-caret-up"></i>
+            </span><span [hidden]="!reverseSort">
+              <i class="fa fa-caret-down"></i>
+            </span>
+          </span>
+        </th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="balance?.length>0 ">
+      <tr *ngFor="let b of balance | search:searchItem :'coin_name' | sort: orderByField:  reverseSort">
+        <td>{{b.date | date: 'shortDate'}}</td>
+        <td>{{b.asset}}</td>
+        <td>{{b.type}}</td>
+        <td>{{b.coin_name}}</td>
+        <td>{{b.amount}}</td>
+        <td><a class="button " href="https://etherscan.io/tx/{{b.txnHash}}" target="_blank">check status</a></td>
+      </tr>
+    </tbody>
+    <div class="text-center loader-div" style="padding: 35px;" *ngIf="loadBalance">
+      <i class="fa fa-spinner fa-spin" id="loader"></i>
+    </div>
+    <div class="no-data" *ngIf="balance?.length == 0  && !loadBalance">
+        <p style="font-size: 12px;font-weight: 501;">No Balance History Available</p>
+      </div>
+  </table>
+  
+</div>

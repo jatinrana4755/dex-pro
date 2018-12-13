@@ -1,0 +1,609 @@
+<app-nav *ngIf="!isLoggedIn"></app-nav>
+<app-nav-logged-in *ngIf="isLoggedIn"></app-nav-logged-in>
+<div class="container-fluid" style="margin:0px;">
+
+  <div class="right mt-72">
+    <div class="nav-group">
+      <nav class="sidebar" #sidenav>
+        <div class="logo-side">
+          <div class="toggle-button" (click)="toggleCollapsed()" #sidenavButton>
+            <i class="fas fa-bars"></i>
+          </div>
+          <span class="imdex-logo">
+            <a class="navbar-brand js-scroll-trigger" routerLink="/">
+              <img src="assets/logo.png" alt="" style="width: 85px">
+            </a>
+          </span>
+        </div>
+        <div class="list-group">
+          <div class="icons-div">
+            <a pageScroll href="#dashboard" class="list-group-item">
+              <span class="sidenav-icon">
+                <i class="fas fa-coins"></i>
+              </span>
+            </a>
+            <a pageScroll href="#buy-sell" class="list-group-item">
+              <span class="sidenav-icon">
+                <i class="fas fa-money-check"></i>
+              </span>
+            </a>
+            <a pageScroll href="#buy-sell" class="list-group-item">
+              <span class="sidenav-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </span>
+            </a>
+            <a pageScroll href="#market-trade" class="list-group-item">
+              <span class="sidenav-icon">
+                <i class="fas fa-chart-line"></i>
+              </span>
+            </a>
+            <a pageScroll href="#ereal" class="list-group-item">
+              <span class="sidenav-icon">
+                <i class="fas fa-chart-area"></i>
+              </span>
+            </a>
+            <a pageScroll href="#balances" class="list-group-item">
+              <span class="sidenav-icon">
+                <i class="fas fa-wallet"></i>
+              </span>
+            </a>
+            <a pageScroll href="#open-orders" class="list-group-item">
+              <span class="sidenav-icon">
+                <i class="fas fa-box-open"></i>
+              </span>
+            </a>
+
+          </div>
+          <div class="label-div">
+            <a pageScroll href="#dashboard" class="list-group-item activeLi" (click)="itemClicked($event)">
+              Coins
+            </a>
+            <a pageScroll href="#buy-sell" class="list-group-item" (click)="itemClicked($event)">
+              ASK/BID
+            </a>
+            <a pageScroll href="#buy-sell" class="list-group-item" (click)="itemClicked($event)">
+              BUY/SELL
+            </a>
+            <a pageScroll href="#market-trade" class="list-group-item" (click)="itemClicked($event)">
+              Market Trade
+            </a>
+            <a pageScroll class="list-group-item" href="#ereal" (click)="itemClicked($event)">
+              {{selectedCoin}} / Coin Market
+            </a>
+            <a pageScroll class="list-group-item" href="#balances" (click)="itemClicked($event)">
+              My Balance
+            </a>
+            <a pageScroll class="list-group-item" href="#open-orders" (click)="itemClicked($event)">
+              Open Orders
+            </a>
+
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="left">
+    <div class="row" id="dashboard">
+      <marquee width="100%" style="font-weight:700;font-size:15px;padding-top:0.2vw;position: absolute;" direction="right">
+        {{message | uppercase }}
+      </marquee>
+      <div class="col-md-6 col-sm-12 col-12">
+        <div class="btc-exchange  size ">
+          <!-- <button type="submit"><i class="fa fa-search"></i><br></button> -->
+          <ul class="nav nav-tabs px-3 pb-3 pt-4" role="tablist">
+            <li class="nav-item" style="width:25%;">
+              <a class="nav-link active show" href="#intrest" role="tab" data-toggle="tab">ETH</a>
+            </li>
+            <li class="nav-item" style="width:25%;">
+              <a class="nav-link" href="#rail" role="tab" data-toggle="tab">TM</a>
+            </li>
+
+          </ul>
+          <div class="py-2 px-3">
+            <input placeholder="Search" [(ngModel)]="search" name="search" class="form-control">
+          </div>
+
+          <div class="tab-content" style="background:white;">
+            <div role="tabpanel" class="tab-pane in active" id="intrest">
+              <div class="table-responsive" style="margin: 0px;padding: 0px;overflow: scroll;height:360px;">
+                <div class="py-3 px-3">
+                  <div class="pretty p-default">
+                    <input type="checkbox" (change)="FavouriteOnlyEth(checkboxEthFav)" [(ngModel)]="checkboxEthFav" id="showFirst" />
+                    <div class="state p-warning">
+                      <label>
+                        <i class="fa fa-star"></i>&nbsp;&nbsp;Only</label>
+                    </div>
+                  </div>
+                  <!-- <input type="checkbox" (change)="FavouriteOnlyEth(checkboxEthFav)" [(ngModel)]="checkboxEthFav" id="showFirst" />
+
+                  <span class="only-color">Only</span> -->
+
+                  <!-- <input type="checkbox" [(ngModel)]="checkboxEthFav" id="showFirst" />
+                    <label class="only-color" for="starTm" style="cursor: pointer">&nbsp;&nbsp;
+                      <span class="text-warning">
+                        <i  (click)="starcheck(checkboxEthFav)" class="{{this.icon}} fa-star" >
+                        </i>
+                      </span>
+
+                    </label> -->
+
+                </div>
+                <table id="tech-companies-1" class="table table-small-font no-mb table-striped" style="position: relative">
+                  <thead>
+                    <tr style="cursor: pointer; color: #337ab7; ">
+
+                      <th>
+
+                        <label for="starTm" style="cursor: pointer">&nbsp;&nbsp;
+                          <span class="text-warning">
+                            <i class="fa fa-star"></i>
+                          </span>
+                        </label>
+                      </th>
+                      <th (click)="orderByField = 'short'; reverseSort = !reverseSort">Token
+                        <span *ngIf="orderByField=='short'">
+                          <span [hidden]="reverseSort">
+                            <i class="fa fa-caret-up"></i>
+                          </span>
+                          <span [hidden]="!reverseSort">
+                            <i class="fa fa-caret-down"></i>
+                          </span>
+                        </span>
+                      </th>
+                      <th (click)="orderByField = 'last_price'; reverseSort = !reverseSort">Price
+                        <span *ngIf="orderByField=='last_price'">
+                          <span [hidden]="reverseSort">
+                            <i class="fa fa-caret-up"></i>
+                          </span>
+                          <span [hidden]="!reverseSort">
+                            <i class="fa fa-caret-down"></i>
+                          </span>
+                        </span>
+                      </th>
+                      <th (click)="orderByField = 'bal'; reverseSort = !reverseSort">Volume
+                        <span *ngIf="orderByField=='bal'">
+                          <span [hidden]="reverseSort">
+                            <i class="fa fa-caret-up"></i>
+                          </span>
+                          <span [hidden]="!reverseSort">
+                            <i class="fa fa-caret-down"></i>
+                          </span>
+                        </span>
+                      </th>
+                      <th (click)="orderByField = 'change'; reverseSort = !reverseSort">Change
+                        <span *ngIf="orderByField=='change'">
+                          <span [hidden]="reverseSort">
+                            <i class="fa fa-caret-up"></i>
+                          </span>
+                          <span [hidden]="!reverseSort">
+                            <i class="fa fa-caret-down"></i>
+                          </span>
+                        </span>
+                      </th>
+                      <th (click)="orderByField = 'name'; reverseSort = !reverseSort">Name
+                        <span *ngIf="orderByField=='name'">
+                          <span [hidden]="reverseSort">
+                            <i class="fa fa-caret-up"></i>
+                          </span>
+                          <span [hidden]="!reverseSort">
+                            <i class="fa fa-caret-down"></i>
+                          </span>
+                        </span>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody style="cursor: pointer;" *ngIf="eth">
+                    <tr *ngFor="let item of eth | search:search: 'short' | sort: orderByField:  reverseSort">
+                      <td *ngIf="!checkIfFavEth(item.id)" (click)="addFavEth(item, item.id)">
+                        <label for="starTm" style="cursor: pointer">&nbsp;&nbsp;
+                          <span class="text-warning">
+                            <i class="far fa-star"></i>
+                          </span>
+                        </label>
+                      </td>
+                      <td *ngIf="checkIfFavEth(item.id)" (click)="removeFavEth(item, item.id)">
+                        <i class="fa fa-star" style="font-size: 13px;"></i>
+                      </td>
+                      <td (click)="setCoin(item, 'eth')">
+                        <a class="text" style="color: #6a6a6a;font-family: sans-serif;font-size: 12px;" title="{{item?.name}}">{{item?.short}}</a>
+                      </td>
+                      <td class="text" (click)="setCoin(item, 'eth')">{{item?.last_price |decimal|float}}</td>
+
+                      <td class="text" (click)="setCoin(item, 'eth')" *ngIf="item?.bal">{{item?.bal |decimal|float}}</td>
+                      <td class="text" (click)="setCoin(item, 'eth')" *ngIf="!item?.bal">0</td>
+                      <td class="{{item.status}} text" (click)="setCoin(item, 'eth')">
+                        <span *ngIf="item.chng>0" style="color:#b84e4e">+</span>{{item?.change |decimal|float}}</td>
+
+                      <td class="text" (click)="setCoin(item, 'eth')">{{item?.name}}{{item?.name?.length > 32 ? '' : ''}}</td>
+                    </tr>
+                  </tbody>
+                  <div class="text-center loader-div" style="padding: 35px;" *ngIf="loadercoin">
+                    <i class="fa fa-spinner fa-spin" id="loadercoin"></i>
+                  </div>
+                  <div *ngIf="eth?.length == 0 && checkboxEthFav" class="no-data">
+                    <p style="font-size: 12px;font-weight: 501;">No favourite eth coin selected</p>
+                  </div>
+                </table>
+
+              </div>
+
+              <!-- <i class="fa fa-spinner fa-spin" id="loadercoin"  *ngIf="loadercoin"></i> -->
+            </div>
+            <div role="tabpanel" class="tab-pane" id="rail">
+              <div class="table-responsive" style="margin: 0px;padding: 0px;overflow: scroll;height: 360px;">
+                <div class="p-3">
+                  <div class="pretty p-default">
+                    <input type="checkbox" (change)="FavouriteOnlyTm(checkboxTmFav)" [(ngModel)]="checkboxTmFav" id="starBth" />
+                    <div class="state p-warning">
+                      <label>
+                        <i class="fa fa-star"></i>&nbsp;&nbsp;Only</label>
+                    </div>
+                  </div>
+                  <!-- <input type="checkbox" (change)="FavouriteOnlyTm(checkboxTmFav)" [(ngModel)]="checkboxTmFav" id="starBth" />
+
+                  <i class="fa fa-star"></i>
+                  <span class="only-color">Only</span> -->
+                  <!-- <label class="only-color" for="starBth" style="cursor: pointer">&nbsp;&nbsp;
+                          <span class="text-warning">
+                            <i  (click)="starcheck(checkboxTmFav)" class="{{this.icon}} fa-star" >
+                            </i>
+                          </span>
+
+                          <span class="only-color">Only</span>
+                        </label> -->
+
+
+
+                </div>
+                <table id="tech-companies-1" class="table table-small-font no-mb table-striped" style="position: relative">
+                  <thead>
+
+                    <tr style="cursor: pointer; color: #337ab7; ">
+                      <th>
+                        <label for="starTm" style="cursor: pointer">&nbsp;&nbsp;
+                          <span class="text-warning">
+                            <i class="fa fa-star"></i>
+                          </span>
+                        </label>
+                      </th>
+                      <th (click)="orderByField = 'short'; reverseSort = !reverseSort">Token
+                        <span *ngIf="orderByField=='short'">
+                          <span [hidden]="reverseSort">
+                            <i class="fa fa-caret-up"></i>
+                          </span>
+                          <span [hidden]="!reverseSort">
+                            <i class="fa fa-caret-down"></i>
+                          </span>
+                        </span>
+                      </th>
+                      <th (click)="orderByField = 'last_price'; reverseSort = !reverseSort">Price
+                        <span *ngIf="orderByField=='last_price'">
+                          <span [hidden]="reverseSort">
+                            <i class="fa fa-caret-up"></i>
+                          </span>
+                          <span [hidden]="!reverseSort">
+                            <i class="fa fa-caret-down"></i>
+                          </span>
+                        </span>
+                      </th>
+                      <th (click)="orderByField = 'bal'; reverseSort = !reverseSort">volume
+                        <span *ngIf="orderByField=='bal'">
+                          <span [hidden]="reverseSort">
+                            <i class="fa fa-caret-up"></i>
+                          </span>
+                          <span [hidden]="!reverseSort">
+                            <i class="fa fa-caret-down"></i>
+                          </span>
+                        </span>
+                      </th>
+                      <th (click)="orderByField = 'change'; reverseSort = !reverseSort">chng
+                        <span *ngIf="orderByField=='change'">
+                          <span [hidden]="reverseSort">
+                            <i class="fa fa-caret-up"></i>
+                          </span>
+                          <span [hidden]="!reverseSort">
+                            <i class="fa fa-caret-down"></i>
+                          </span>
+                        </span>
+                      </th>
+                      <th (click)="orderByField = 'name'; reverseSort = !reverseSort">Name
+                        <span *ngIf="orderByField=='name'">
+                          <span [hidden]="reverseSort">
+                            <i class="fa fa-caret-up"></i>
+                          </span>
+                          <span [hidden]="!reverseSort">
+                            <i class="fa fa-caret-down"></i>
+                          </span>
+                        </span>
+                      </th>
+                    </tr>
+
+                  </thead>
+                  <tbody style="cursor: pointer;">
+
+
+                    <tr *ngFor="let item of tm | search:search: 'short' | sort: orderByField:  reverseSort">
+                      <td *ngIf="!checkIfFavTm(item.id)" (click)="addFavTm(item, item.id)">
+                        <label for="starTm" style="cursor: pointer">&nbsp;&nbsp;
+                          <span class="text-warning">
+                            <i class="far fa-star"></i>
+                          </span>
+                        </label>
+                      </td>
+                      <td *ngIf="checkIfFavTm(item.id)" (click)="removeFavTm(item, item.id)">
+                        <i class="fa fa-star" style="font-size: 13px;"></i>
+                        <label for="starTm" style="cursor: pointer">&nbsp;&nbsp;
+                          <span class="text-warning"></span>
+                        </label>
+                      </td>
+                      <td (click)="setCoin(item, 'tm')">
+                        <a class="text" style="color: #6a6a6a;font-family: sans-serif;font-size: 12px;" title="{{item?.name}}">{{item?.short}}</a>
+                      </td>
+                      <td class="text" (click)="setCoin(item, 'tm')">{{item?.last_price}}</td>
+                      <td class="text" (click)="setCoin(item, 'tm')">{{item?.bal}}</td>
+                      <td class="{{item.status}} text" (click)="setCoin(item, 'tm')">
+                        <span *ngIf="item.chng>0" style="color:#b84e4e">+</span>{{item?.change |decimal|float}}</td>
+                      <td class="text" (click)="setCoin(item, 'tm')">{{item?.name}}</td>
+                    </tr>
+                  </tbody>
+                  <div class="text-center loader-div" style="padding: 35px;" *ngIf="loadercoin">
+                    <i class="fa fa-spinner fa-spin" id="loadercoin"></i>
+                  </div>
+                  <div *ngIf="tm?.length == 0 && checkboxTmFav" class="no-data">
+                    <p style="font-size: 12px;font-weight: 501;">No favourite Tm coin selected</p>
+                  </div>
+                </table>
+
+              </div>
+
+
+            </div>
+            <!-- <div role="tabpanel" class="tab-pane fade" id="btc">ccc</div>
+                        <div role="tabpanel" class="tab-pane fade" id="krw">ddd</div> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-6" style="margin-top: 20px;" [hidden]="chartType != 1">
+        <div class="chart-div">
+          <div style="padding: 10px;">
+            <h5 style="text-transform: uppercase;">{{Cointype}}_{{selectedCoin}}</h5>
+          </div>
+          <div class="tradingview-widget-container" style="height: 425px;">
+            <div id="tv_chart_container" class="app-tv-chart-container"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-6 col-lg-6" style="margin-top: 20px;" [hidden]="chartType != 2">
+        <app-any-chart></app-any-chart>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row" style="margin-bottom: 15px;margin-top: 15px;" id="buy-sell">
+          <div class="col-lg-6 col-md-6 col-sm-12">
+
+            <div class="balances">
+              <div class="table-responsive" style="margin: 0px;padding: 0px;height:450px !important">
+                <ul class="nav nav-tabs px-3 pt-4 pb-3" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#ask" role="tab" data-toggle="tab">Ask</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#bid" role="tab" data-toggle="tab">BID</a>
+                  </li>
+                </ul>
+
+                <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane in active" id="ask">
+                    <div class="col-lg-12" style="padding: 10px 0;">
+                      <table class="table" style="position: relative">
+                        <thead>
+                          <tr>
+                            <th>Price</th>
+                            <th>Volume</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngIf="askData?.length>0">
+                          <tr *ngFor="let ask of askData">
+                            <td>{{ask.price}}</td>
+                            <td>{{ask.volume}}</td>
+                            <td>{{(ask.price)*(ask.volume)}}</td>
+
+                          </tr>
+
+                        </tbody>
+                        <div class="text-center loader-div" style="padding: 35px;" *ngIf="loaderask">
+                          <i class="fa fa-spinner fa-spin" id="loaderask"></i>
+                        </div>
+                      </table>
+                      <div *ngIf="askData?.length == 0 && !loaderask" class="no-data">
+                        <p style="font-size: 12px;font-weight: 501;">There is no ask rate to show.</p>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div role="tabpanel" class="tab-pane in" id="bid">
+                    <div class="col-lg-12" style="    padding: 10px 0;">
+                      <table class="table " style="position: relative">
+                        <thead>
+                          <tr>
+                            <th>Price</th>
+                            <th>Volume</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngIf="bidData?.length>0 ">
+                          <tr *ngFor="let bid of bidData ">
+                            <td>{{bid.price |decimal|float}}</td>
+                            <td>{{bid.volume |decimal|float}}</td>
+                            <td>{{(bid.price)*(bid.volume) |decimal|float}}</td>
+                          </tr>
+                        </tbody>
+                        <div class="text-center loader-div" style="padding: 35px;" *ngIf="loaderask">
+                          <i class="fa fa-spinner fa-spin" id="loaderask"></i>
+                        </div>
+                      </table>
+                      <div *ngIf="bidData?.length == 0 && !loaderask" class="no-data">
+                        <p style="font-size: 12px;font-weight: 501;">There is no bid data to show.</p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <i class="fa fa-spinner fa-spin" id="loaderask"  *ngIf="loaderask"></i> -->
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+            <app-buy-sell [selectedCoin]="selectedCoin" [Cointype]="Cointype" [chatSocket]="chatSocket"></app-buy-sell>
+          </div>
+
+        </div>
+        <div id="market-trade">
+          <app-market-trade [markettrades]="markettrades"></app-market-trade>
+        </div>
+
+        <div class="container-fluid px-1 my-4" id="ereal">
+          <div class="col-md-12 imdex-market bg-white" style="border-radius: 5px;
+          box-shadow: 0px 0px 10px #ddd;">
+            <div class="row px-3">
+              <div class="col-md-6 py-5">
+                <h4 class="text-center mb-3">{{selectedCoin}} ({{selectedCoinData?.name}})</h4>
+                <div style="display: block;height: 35px">
+                  <span class="text-white">.</span>
+                  <span *ngIf="address"> Contract:
+                    <a href="https://etherscan.io/address/{{address}}" target="blank" class="address-con">{{address}}</a>
+                  </span>
+                </div>
+
+                <div class="table-responsive mt-4" style="margin: 0px;padding: 0px;max-height: 450px;">
+                  <table class="table table-small-font no-mb table-striped table-vertical table-bordered mb-0">
+
+                    <tr>
+                      <th class="th">Last Price</th>
+                      <td class="td" *ngIf="selectedCoinLatestPrice != undefined ||selectedCoinLatestPrice != null">{{selectedCoinLatestPrice|decimal|float}}</td>
+                      <td *ngIf="selectedCoinLatestPrice == undefined ||selectedCoinLatestPrice == null">-</td>
+                    </tr>
+                    <tr>
+                      <th class="th">24hr H</th>
+                      <td class="td" *ngIf="selectedCoinDetails.max">{{selectedCoinDetails.max|decimal|float}}</td>
+                      <td *ngIf="!selectedCoinDetails.max">-</td>
+                    </tr>
+                    <tr>
+                      <th class="th">24hr L</th>
+                      <td class="td" *ngIf="selectedCoinDetails.min">{{selectedCoinDetails.min|decimal|float}}</td>
+                      <td *ngIf="!selectedCoinDetails.min">-</td>
+                    </tr>
+                    <tr>
+                      <th class="th">Ask</th>
+                      <td *ngIf="askData[0]?.price != undefined || askData[0]?.price != null" class="td">{{askData[0]?.price |decimal|float}}</td>
+                      <td *ngIf="askData[0]?.price == undefined || askData[0]?.price == null" class="td">-</td>
+                    </tr>
+                    <tr>
+                      <th class="th">Bid</th>
+                      <td *ngIf="bidData[0]?.price != undefined || bidData[0]?.price != null">{{bidData[0]?.price} |decimal|float}</td>
+                      <td *ngIf="bidData[0]?.price == undefined || bidData[0]?.price == null" class="td">-</td>
+                    </tr>
+                    <tr>
+                      <th class="th">24hr Change</th>
+                      <td class="td" *ngIf="selectedCoinDetails.percentcng">{{selectedCoinDetails.percentcng |decimal|float}}%</td>
+                      <td *ngIf="!selectedCoinDetails.percentcng">-</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <div class="col-md-6 py-5">
+                <div class="row">
+                  <h4 class="text-center mb-3" style="width: 100%">CoinMarketCap</h4>
+                  <div style="display: block;height: 35px;color:#fff">
+                    .
+                  </div>
+                  <div class="table-responsive mt-4" style="margin: 0px;padding: 0px;">
+                    <table class="table table-small-font no-mb table-striped table-vertical table-bordered">
+
+                      <tr>
+                        <th class="th">Ethereum:</th>
+                        <td class="td" *ngIf="tokenPrice?.eth">{{tokenPrice?.eth |decimal|float}} </td>
+                        <td *ngIf="!tokenPrice?.eth">-</td>
+                      </tr>
+
+                      <tr>
+                        <th class="th">ETH Price</th>
+                        <td class="td" *ngIf="tokenPrice">{{tokenPrice?.last_price |decimal|float}}</td>
+                        <td *ngIf="!tokenPrice">-</td>
+                      </tr>
+                      <tr>
+                        <th class="th">USD Price</th>
+                        <td class="td" *ngIf="tokenPrice?.coin_usd != undefined ||tokenPrice?.coin_usd != null">$ {{tokenPrice?.coin_usd |decimal|float}}</td>
+                        <td *ngIf="tokenPrice?.coin_usd == undefined ||tokenPrice?.coin_usd == null">-</td>
+                      </tr>
+
+                      <tr>
+                        <th class="th">Change 1h | 24h | 7d</th>
+                        <td class="td">{{tokenPrice?.one_hourpercentage |decimal|float}} % | {{tokenPrice?.twentyfour_hourpercentage|decimal|float}}
+                          % | {{tokenPrice?.Sevendays_percentage}} %
+                        </td>
+                      </tr>
+
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container-fluid px-1">
+          <div class="row" id="balances">
+            <div class="col-lg-5 col-md-12 twitter-div">
+              <!-- Tab panes -->
+              <app-twitter></app-twitter>
+            </div>
+            <div class="col-lg-7 col-md-12 ">
+              <div class="bg-white dash-order-div px-0" style="border-radius: 5px;
+              box-shadow: 0px 0px 10px #ddd; height: 450px;">
+                <h5 class="heading text-center mb-4 pt-4 open-orders">MY BALANCES</h5>
+                <div class="table-responsive" style="position: relative;margin: 0px;padding: 0px;overflow: auto;overflow-x: hidden;max-height: 370px;min-height: 370px;">
+                  <table id="tech-companies-1" class="table table-small-font no-mb table-striped" style="position: relative">
+                    <thead class="py-3 px-3">
+                      <tr style="cursor: pointer; color: #337ab7;">
+                        <th>Token</th>
+                        <th>Balance</th>
+                      </tr>
+                    </thead>
+
+                    <tbody *ngIf="allBalances?.length> 0">
+                      <tr *ngFor="let data of allBalances">
+                        <td>{{data.coin }}</td>
+                        <td>{{data.balance }}</td>
+                      </tr>
+                    </tbody>
+                    <div class="text-center loader-div" *ngIf="loadBalance">
+                      <i class="fa fa-spinner fa-spin" id="loadercoin"></i>
+                    </div>
+                  </table>
+                  <div *ngIf="allBalances?.length == 0 && !loadBalance" class="no-data">
+                    <p style="font-size: 12px;font-weight: 501;">You have zero tokens deposited.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <app-chat></app-chat>
+          </div>
+        </div>
+
+        <div class="row" style="margin: 15px 0;" id="open-orders">
+          <div class="container-fluid ">
+            <div class="container-fluid bg-white dash-order-div px-0" style="border-radius: 5px;
+            box-shadow: 0px 0px 10px #ddd;">
+              <app-open-orders></app-open-orders>
+            </div>
+
+          </div>
+
+        </div>
+
+        <app-footer></app-footer>
+        <!-- <app-any-chart></app-any-chart> -->

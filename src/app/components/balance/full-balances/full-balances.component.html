@@ -1,0 +1,142 @@
+
+<div class="container-fluid main-div" style="padding-top: 100px!important;">
+  <h4 class="heading text-center mb-5 text-uppercase" style="color: #555">Full Balances</h4>
+  <div class="table-div">
+      <div *ngIf="fullBalanceData" class="filter-div">
+        <div class="inner-filter col-md-8">
+          <div class="row">
+              <div class="col-md-6">
+                  <input type="text" [(ngModel)]="searchItem" name="search" placeholder="Search" class="form-control">
+              </div>
+              <div class="col-md-6" style="display: grid;align-items: center;">
+                  <div class="pretty p-default">
+                      <input type="checkbox" [(ngModel)]="hideZero"  name="hideZero"/>
+                      <div class="state p-warning">
+                          <label>Hide Zero Balances</label>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+  <table 
+  class="table"
+  infinite-scroll
+  [infiniteScrollDistance]="3"
+  [infiniteScrollThrottle]="300"
+  (scrolled)="onScroll()"
+  style="position: relative;margin-bottom: 110px"
+  >
+    <thead>
+      <tr>
+        <th (click)="orderByField = 'shortname'; reverseSort = !reverseSort">Token
+            <span *ngIf="orderByField=='shortname'">
+              <span [hidden]="reverseSort">
+                <i class="fa fa-caret-up"></i>
+              </span><span [hidden]="!reverseSort">
+                <i class="fa fa-caret-down"></i>
+              </span>
+            </span>
+          </th> 
+          <th (click)="orderByField = 'coin'; reverseSort = !reverseSort">Name
+            <span *ngIf="orderByField=='coin'">
+              <span [hidden]="reverseSort">
+                <i class="fa fa-caret-up"></i>
+              </span><span [hidden]="!reverseSort">
+                <i class="fa fa-caret-down"></i>
+              </span>
+            </span>
+          </th> 
+          <th (click)="orderByField = 'balance'; reverseSort = !reverseSort">My Imdex Balance
+            <span *ngIf="orderByField=='balance'">
+              <span [hidden]="reverseSort">
+                <i class="fa fa-caret-up"></i>
+              </span><span [hidden]="!reverseSort">
+                <i class="fa fa-caret-down"></i>
+              </span>
+            </span>
+          </th> 
+        <th>My Wallet Balance</th>
+        <th>On Orders</th>
+        <th>USD Value on Imdex</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="fullBalanceData">
+      <tr *ngFor="let balance of fullBalanceData | balance : hideZero | search : searchItem: 'shortname'| sort: orderByField:  reverseSort">
+        <td>{{balance.shortname}}</td>
+        <td>{{balance.coin}}</td>
+        <td>{{balance.balance}}</td>
+        <td style="align-content: center"><p *ngIf="wallet_balance[balance.coinId]">{{wallet_balance[balance.coinId]}}</p>
+            <button type="button"class="btn btn-sm btn-outline-primary " (click)=" Query(balance)">
+                <span *ngIf="!click[balance.coinId]">Query</span>
+                <span *ngIf="click[balance.coinId]">Update</span>
+                <i class="fa fa-spin fa-spinner"  *ngIf="loading[balance.coinId]"></i>
+          </button>
+        </td>
+        <td>{{balance.onOrder |decimal|float}}</td>
+        <td>{{balance.usd_value |decimal|float}}</td>
+        <td><button type="button" class="btn btn-sm btn-outline-success" (click)=" depositmodal(balance)">Deposit</button>&nbsp;&nbsp;
+          <button class="btn btn-sm btn-outline-info" (click)=" withdrawmodal(balance)">Withdraw</button>
+        </td>
+      </tr>
+    </tbody>
+    <div class="loaderDiv" *ngIf="balanceloader">
+        <i class="fa fa-spinner fa-spin" ></i>
+    </div>
+</table>
+  </div>
+  
+</div>
+
+<!-- Deposit Modal -->
+<div class="modal fade" id="deposit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header text-center">
+              <h5 class="modal-title w-100 ">Deposit {{modaldata?.coin}} ({{modaldata?.shortname}}) To Imdex
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
+              </button>
+          </div>
+          <div class="modal-body mx-3">
+              <div class="md-form mb-4">
+                  <input type="number" [(ngModel)]="depositAmount"id="defaultForm-pass" placeholder="Amount to send" class="form-control validate">
+             <p style="text-align:center;font-size:12px;padding-top: 15px;">Trade Mins: $150.00 USD Maker/$50.00 USD Taker</p>
+                </div>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+              <button class="btn btn-success" [disabled]="!depositAmount" (click)="deposit(modaldata.coinId)">Deposit&nbsp;<i class="fa fa-spin fa-spinner"  *ngIf="depositloader"></i></button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Withdraw Modal -->
+<div class="modal fade" id="withdraw" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header text-center">
+              <h5 class="modal-title w-100">Withdraw {{modaldata?.coin}} ({{modaldata?.shortname}}) From Imdex
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
+              </button>
+          </div>
+          <div class="modal-body mx-3">
+              <div class="md-form mb-4">
+                  <input type="number" [(ngModel)]="withdrawAmount"id="defaultForm-pass" placeholder="Amount to withdraw" class="form-control validate">
+             <p style="text-align:center;font-size:12px;padding-top: 15px;">Trade Mins: $150.00 USD Maker/$50.00 USD Taker</p>
+                </div>
+
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+              <button class="btn btn-info" [disabled]="!withdrawAmount" (click)="withdraw(modaldata.coinId)">Withdraw&nbsp;<i class="fa fa-spin fa-spinner"  *ngIf="withdrawloader"></i></button>
+          </div>
+      </div>
+  </div>
+</div>
+
+ 

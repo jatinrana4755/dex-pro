@@ -1,0 +1,175 @@
+<div class="buy-sell">
+  <ul class="nav nav-tabs px-3 pt-4 pb-3" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" href="#profile" role="tab" data-toggle="tab">BUY</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#buzz" role="tab" data-toggle="tab">SELL</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content px-3 pt-3">
+    <div role="tabpanel" class="tab-pane in active" id="profile">
+      <div class="col-lg-12 buy-sell-form">
+        <form [formGroup]="buyform">
+          <div class="input-group" style=" margin-bottom: 10px;border:1px solid rgba(34,35,38,.12);">
+            <span class="input-group-addon">
+              <b>Type</b>
+            </span>
+            <select class="form-control" (change)="checkbuyOrder()"  formControlName="bordertype" style="border: none;color: #333">
+              <option value="market">Market</option>
+              <option value="limit" >LIMIT</option>
+            </select>
+            <span class="input-group-addon"></span>
+          </div>
+          <div class="input-group" style=" margin-bottom: 10px;border:1px solid rgba(34,35,38,.12);">
+            <span class="input-group-addon"><b>PRICE</b>
+              <!-- <br>
+              <b>INR</b> -->
+            </span>
+            <input id="email" type="number" class="form-control" id='buyprice'  formControlName="buyprice" placeholder="" style="border: none;color: #333">
+            <span class="input-group-addon">
+               <br> 
+              <b>{{selectedCoin | uppercase}}</b>
+            </span>
+          </div>
+          <div class="input-group" style=" margin-bottom: 10px;border:1px solid rgba(34,35,38,.12);">
+            <span class="input-group-addon"><b>Amount</b>
+              <!-- <br>
+              <b>INR</b> -->
+            </span>
+            <input id="email" type="number" class="form-control" formControlName="buyamount" placeholder="" style="border: none;color: #333">
+            <span class="input-group-addon"><b>{{Cointype | uppercase}}</b>
+            </span>
+          </div>
+          <div class="input-group" style=" margin-bottom: 10px;border:1px solid rgba(34,35,38,.12);">
+            <span class="input-group-addon"><b>Sum</b>
+              <!-- <br>
+              <b>INR</b> -->
+            </span>
+            <input id="email" type="text" class="form-control" name="email" placeholder="" [value]="buyform.get('buyamount').value*buyform.get('buyprice').value"
+              style="border: none;color: #333" readOnly>
+            <span class="input-group-addon">
+               <!-- <br>  -->
+              <b>{{selectedCoin | uppercase}}</b> 
+            </span>
+          </div>
+          <div class="input-group" style=" margin-bottom: 10px;border:1px solid rgba(34,35,38,.12);">
+            <span class="input-group-addon"><b>Fee</b>
+              <!-- <br>
+              <b>INR</b> -->
+            </span>
+            <input id="email" type="text" class="form-control" name="email" placeholder="" [value]="(takerFee/100)*buyform.get('buyamount').value"
+              style="border: none;color: #333" readOnly>
+            <span class="input-group-addon"><b>PRICE</b>
+              <!-- <br>
+              <b>INR</b> -->
+            </span>
+          </div>
+          <span *ngIf="buyform.get('buyamount').errors?.decimal8" style="color: red;">Please do not enter more than 8 decimal places</span>
+          <span *ngIf="buyform.get('buyprice').errors?.decimal8" style="color: red;">Please do not enter more than 8 decimal places</span>
+          <!-- <div tabindex="0" data-toggle="tooltip" title=" Please make sure that you are logged in " class="red-tooltip" > -->
+              <div class="copy-address" style="cursor:pointer"  >
+                  <!-- <img src="./assets/img/copy.png" width="20px"/> -->
+                  <!-- <i class="fas fa-copy"></i> -->
+                  <span class="tooltip-copy  copy-address">Please make sure that you are logged in </span>
+              
+            <button type="submit" class="btn btn-success" (click)="buyCoin()" style="width:100%;margin: 10px 0;border-radius: 0px;border: none;"
+              [disabled]="!loggedIn || buyform.invalid">BUY {{selectedCoin | uppercase}} &nbsp;&nbsp;&nbsp;<i *ngIf="buyLoad" class="fa fa-spin fa-spinner"></i></button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+    <div role="tabpanel" class="tab-pane " id="buzz">
+      <div class="col-lg-12">
+        <form [formGroup]="sellform">
+          <div class="input-group" style=" margin-bottom: 10px;border:1px solid rgba(34,35,38,.12);">
+            <span class="input-group-addon">
+              <b>Type</b>
+            </span>
+            <select id="email" class="form-control" (change)="checksellOrder()" formControlName="sordertype" placeholder="" style="border: none;color: #333">
+              <option value="market">Market</option>
+              <option value="limit" >LIMIT</option>
+            </select>
+            <span class="input-group-addon"></span>
+          </div>
+          <div class="input-group" style=" margin-bottom: 10px;border:1px solid rgba(34,35,38,.12);">
+            <span class="input-group-addon"><b>PRICE</b>
+              <!-- <br>
+              <b>INR</b> -->
+            </span>
+            <input id="email" type="number" class="form-control" id="saleprice" formControlName="sellPrice" placeholder="" value="" style="border: none;color: #333">
+            <span class="input-group-addon">
+              <!-- <br> -->
+              <b>{{selectedCoin | uppercase}}</b>
+                
+            </span>
+          </div>
+          <div class="input-group" style=" margin-bottom: 10px;border:1px solid rgba(34,35,38,.12);">
+            <span class="input-group-addon"><b>Amount</b>
+              <!-- <br>
+              <b>INR</b> -->
+            </span>
+            <input id="email" type="number" class="form-control" formControlName="sellAmount" value="" style="border: none;color: #333">
+            <span class="input-group-addon">
+              <!-- <br> -->
+              <b>{{Cointype | uppercase}}</b>
+            </span>
+          </div>
+          <div class="input-group" style=" margin-bottom: 10px;border:1px solid rgba(34,35,38,.12);">
+            <span class="input-group-addon"><b>Sum</b>
+              <!-- <br>
+              <b>INR</b> -->
+            </span>
+            <input id="email" type="text" class="form-control" name="email" placeholder="" [value]="sellform.get('sellAmount').value*sellform.get('sellPrice').value"
+              style="border: none;color: #333" readOnly>
+            <span class="input-group-addon">
+              <!-- <br> -->
+              <b>{{selectedCoin | uppercase}}</b>
+            </span>
+          </div>
+          <div class="input-group" style=" margin-bottom: 10px;border:1px solid rgba(34,35,38,.12);">
+            <span class="input-group-addon"><b>Fee</b>
+              <!-- <br>
+              <b>INR</b> -->
+            </span>
+            <input id="email" type="text" class="form-control" name="email" placeholder="" [value]="(makerFee/ 100)*sellform.get('sellAmount').value"
+              style="border: none;color: #333" readOnly>
+            <span class="input-group-addon"><b>PRICE</b>
+              <!-- <br>
+              <b>INR</b> -->
+            </span>
+          </div>
+          <!-- <div class="details">
+            <div style="width:50%;float:left;padding:10px 0px 0px 0px;">
+              <p>Transaction </p>
+            </div>
+            <div class="" style="width:50%;float:right;padding:10px 10px 10px 0px;">
+              <span style="float:right">500</span>
+            </div>
+
+
+          </div> -->
+
+          <span *ngIf="sellform.get('sellAmount').errors?.decimal8" style="color: red;">Please do not enter more than 8 decimal places</span>
+          <span *ngIf="sellform.get('sellPrice').errors?.decimal8" style="color: red;">Please do not enter more than 8 decimal places</span>
+
+          <!-- <div tabindex="0" data-toggle="tooltip" title="Please make sure that you are logged in " class="red-tooltip"> -->
+              <div class="copy-address" style="cursor:pointer"  >
+                  <!-- <img src="./assets/img/copy.png" width="20px"/> -->
+                  <!-- <i class="fas fa-copy"></i> -->
+                  <span class="tooltip-copy  copy-address">Please make sure that you are logged in </span>
+            <button type="button" class="btn btn-danger" (click)="sellCoin()" style="width:100%;margin: 10px 0;border-radius: 0px;border: none;"
+              [disabled]="!loggedIn || sellform.invalid">SELL {{selectedCoin | uppercase}} &nbsp;&nbsp;&nbsp;<i *ngIf="sellLoad" class="fa fa-spin fa-spinner"></i></button>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

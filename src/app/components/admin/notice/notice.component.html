@@ -1,0 +1,98 @@
+<!-- <div class="header">
+  <a href="#default" class="logo" style="color:white">Notices</a>
+  <div class="header-right">
+    <a class="btn btn-primary" style="margin-left: 800px;" data-toggle="modal" data-target="#addModal">
+      Add Notice &nbsp;
+      <i class="fa fa-plus"></i>
+    </a>
+  </div>
+</div> -->
+<app-sidebar></app-sidebar>
+<div class="header">
+    <div class="inner-header title-head">
+        <a href="#default" class="logo">Notices</a>
+    </div>
+</div>
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>chartType</th>
+      <th>isActive</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let n of NoticeArray?.notice">
+      <td>{{n.message}}</td>
+      <td *ngIf="n?.charttype == 1">Trading View</td>
+      <td *ngIf="n?.charttype == 2">Any Chart</td>      
+      <td>
+        <i class="fa fa-check-circle text-success" *ngIf="n?.is_active"></i>
+        <i class="fa fa-check-circle text-danger" *ngIf="!n?.is_active"></i>
+      </td>
+      <td>
+        <button type="button" class="btn btn-sm btn-actions" data-toggle="modal" data-target="#addModal" style="background: #278fff;"><i class="fas fa-edit"></i></button>
+        &nbsp;
+        
+      </td>
+    </tr>
+  </tbody>
+
+  <div class="text-center loader-div" style="display: block;  top: 70%;color: #049ddc; " *ngIf="loader">
+    <i class="fa fat fa-spinner fa-spin" id="loader"></i>
+  </div>
+
+</table>
+<br>
+<br>
+<br>
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addModalLabel">Add Notice</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #createNoticeForm="ngForm">
+          <div class="form-group">
+
+
+            <label>message</label>
+            <input type="text" name="message" [(ngModel)]="message" class="form-control" placeholder="Enter message"
+              >
+              <!-- <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                    Message is required
+                  </div> -->
+
+          </div>
+         
+          <div class="form-group">
+            <label>chart type </label>
+            <select type="text" name="type" [(ngModel)]="charttype"  class="form-control">
+              <option value="1" >TradingView</option>              
+              <option   value="2">AnyChart</option>
+            </select>
+            <!-- <div [hidden]="name?.valid || name?.pristine" class="alert alert-danger">
+                    chart type is required
+                  </div> -->
+          </div> 
+
+        </form>
+      </div>
+      <div class="modal-footer">
+
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+        <button type="button" class="btn btn-primary" [disabled]="createNoticeForm.pristine" (click)="AddNotice(createNoticeForm)"
+          >Confirm <i class="fa fa-spin fa-spinner" *ngIf="addloader"></i></button>
+
+      </div>
+    </div>
+  </div>
+</div>

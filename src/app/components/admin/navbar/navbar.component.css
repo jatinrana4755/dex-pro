@@ -1,0 +1,26 @@
+ .nav-item{
+    margin-right: 20px
+}
+.navbar{
+    padding: 10px 0;
+    z-index: 999;
+    box-shadow: 0 0 5px #ddd;
+    background:#fff;
+}
+.navbar-light .navbar-nav .nav-link {
+    /* color: #fff ; */
+    font-size: 15px;
+}
+.navbar-brand{
+    font-size: 1.15rem;
+}
+.fixed-top{ 
+    left: 235px;
+}
+@media (max-width: 992px){
+    .fixed-top{ 
+        left: 60px;
+        padding-left: 20px;
+    }
+
+}

@@ -1,0 +1,62 @@
+/* :root{
+    font-size: 16px;
+    
+}
+.background-color{
+background-color: #f4f6f9;
+height: 40vh;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.color{
+   color: #3b3b42;
+   font-weight: bold;
+   font-size:1.5rem;
+
+   
+}
+.size{
+    width: 47vw;
+}
+
+table{
+    background: #ddd;
+    width:100%;
+}
+
+th{
+    padding-left:0px;
+    padding-right: 130px;
+}
+
+.box{
+    border: 1px solid black;
+    max-width: 1200px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #F4F6F9;
+} */
+
+.main-div{
+    min-height: 80vh
+}
+.table{
+     background: #fff;
+     border-radius: 10px;
+}
+.table thead th{
+    font-size: 14px;
+    border-bottom: 1px solid #dee2e6;
+    border-top: none;
+}
+.table td {
+    border-top: none;
+}
+.margin-left{
+    margin-left: 3vw;
+}
+#loader{
+    font-size: 40px;
+    text-align: center;
+    color: #049ddc;
+}

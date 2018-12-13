@@ -1,0 +1,54 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}" #sidenav>
+  <div class="logo-side">
+    <div class="toggle-button" (click)="toggleCollapsed()" #sidenavButton>
+      <i class="fas fa-bars"></i>
+    </div>
+    <a class="navbar-brand js-scroll-trigger" routerLink="/">
+      <img src="assets/logo.png" alt="" style="width: 85px">
+    </a> 
+  </div>
+  <div class="list-group">
+    <div class="icons-div">
+        <a routerLink="/admin/coin" [routerLinkActive]="['router-link-active']" class="list-group-item">
+          <span class="sidenav-icon">
+            <!-- <img src="assets/img/coin.svg" alt=""> -->
+          <i class="fas fa-coins"></i>
+          </span>
+        </a>
+        <a routerLink="/admin/fee" [routerLinkActive]="['router-link-active']" class="list-group-item" >
+          <span class="sidenav-icon">
+            <!-- <img src="assets/img/maker.svg" alt=""> -->
+          <i class="fas fa-money-bill-alt"></i>
+          </span>
+        </a>
+        <a routerLink="/admin/notice" [routerLinkActive]="['router-link-active']" class="list-group-item">
+          <span class="sidenav-icon">
+            <i class="fas fa-exclamation-circle"></i>
+            <!-- <img src="assets/img/notice.svg" alt=""> -->
+          </span>
+        </a>
+        <a [routerLinkActive]="['router-link-active']" class="list-group-item" (click)="logout()">
+          <span class="sidenav-icon">
+              <i class="fas fa-sign-out-alt"></i>
+            <!-- <img src="assets/img/notice.svg" alt=""> -->
+          </span>
+        </a>
+    </div>
+    <div class="label-div">
+        <a routerLink="/admin/coin" [routerLinkActive]="['router-link-active']" class="list-group-item" (click)="itemClicked()">
+          <span>Coins</span>
+        </a>
+        <a routerLink="/admin/fee" [routerLinkActive]="['router-link-active']" class="list-group-item" (click)="itemClicked()">
+          <span>Fees</span>
+        </a>
+        <a routerLink="/admin/notice" [routerLinkActive]="['router-link-active']" class="list-group-item" (click)="itemClicked()">
+          <span>Notices and Charts</span>
+        </a>
+        <a  class="list-group-item" (click)="logout()">
+          <span>Logout</span>
+        </a>
+    </div>
+    
+  </div>
+  
+</nav>

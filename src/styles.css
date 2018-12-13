@@ -1,0 +1,93 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css?family=Sunflower:300');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+  font-family: 'Lato', sans-serif;
+  overflow-x: hidden;
+  background: #f6f6f6;
+}
+.swal2-styled{
+    padding: 6px 44px!important
+}
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 51px;
+    height: 51px;
+    margin: 6px;
+    border: 6px solid #17a2b8;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #17a2b8 transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  .order-div>.main-div{
+    padding-top: 100px
+  }
+  .dash-order-div .order-div>.main-div{
+    padding-top: 40px;
+}
+
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+ 
+  
+  /* table no data  */
+.no-data {
+     text-align: center;
+          border: 2px dotted;
+          width: 20%;
+          padding-top: 15px;
+          margin-left: -10%;
+          /* margin: 0 auto; */
+          top: 75px;
+          position: absolute;
+          left: 50%;
+}
+
+/* .table-responsive{
+  height: 450px !important;
+} */
+.timeline-Tweet-text{
+  font-size: 14px!important;
+  line-height: 28px;
+  font-weight: 300;
+}
+
+
+.loader-div{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100px;
+}
+#loaderask , #loadercoin , #balanceloader{
+    font-size: 25px;
+    text-align: center;
+    color: #049ddc;
+
+}

@@ -1,0 +1,83 @@
+<!-- <div id="body">
+
+        Enter Password
+        <div class="container">
+            <div class="block">
+                <input type="text" [(ngModel)]="password">
+                <button type="submit" (click)="submit()">submit</button>
+            </div>
+        </div>
+        
+</div> -->
+<app-nav *ngIf="!isLoggedIn"></app-nav>
+<app-nav-logged-in *ngIf="isLoggedIn"></app-nav-logged-in>>
+
+<div class="row create-row">
+  <div class="col-sm-8 col-sm-offset-2 col-xs-12">
+    <div class="card box col-md-10 p-5" style="box-shadow: 0px 0px 15px #e6e6e6;border: none;margin: auto;">
+      <h1 class="pb-20" style="text-transform:uppercase;">Create New Wallet</h1>
+      <form>
+        <div class="form-group">
+
+          <div class="form-group">
+            <input type="password" rows="4" class="form-control" name="message" placeholder="Password" [(ngModel)]="password" required>
+          </div>
+
+          <p>This password is used to encrypt your private key into a downloadable JSON file. Save this-- we
+            <b>cannot</b> recover or reset your password.</p>
+          <b>You will need either the JSON file + password or your private key to unlock your wallet.</b>
+          <br>
+          <br>
+          <div class="text-center">
+                          <button (click)="submit()" class="btn btn-outline-success " [disabled]="wait"><i class="fas fa-wallet"></i>&nbsp;&nbsp; Create wallet <span class="fa-spin loading-login" *ngIf="wait"><i class="fas fa-spinner"></i></span></button>
+            <!-- <button type="button" (click)="submit()" class="btn btn-primary" style="border:none;border-radius:3px;" [disabled]="wait">
+              <i class="fas fa-wallet"></i>&nbsp;&nbsp; CREATE NEW WALLET &nbsp;&nbsp;&nbsp; <i *ngIf="wait" class="fa fa-spin fa-spinner"></i></button> -->
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="margin-top: 7vh;
+  max-width: max-content;
+  max-width: 65%;">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            <div class="contact-wrapper pt-4" style="padding: 10px;min-height: 300px;">
+              <div class="contact-form">
+                <div class="form-group">
+                  <h6 class=" text-success"><i class="far fa-check-circle"></i>&nbsp;&nbsp; Wallet created successfully</h6>
+                  <h1 class="mb-5">Save Your Keystore File</h1>
+                  <button type="button" (click)="downloadFile()" class="btn btn-success mb-3"><i class="fas fa-file-download"></i>&nbsp;&nbsp; DOWNLOAD KEYSTORE FILE</button>
+
+                  <p>Save this file (and your password) in a secure location and create a backup.</p>
+                  <p>We cannot recover or recreate this file if lost!</p>
+                  <p>Do not use this file on any other site-- your funds can (and will) be stolen.</p>
+
+                  <button type="button" class="btn btn-success mb-3" (click)="copyPrivateKey()"><i class="fas fa-copy"></i>&nbsp;&nbsp;CLICK TO COPY PRIVATE KEY</button>
+                  <span id="msg-copy" style="display: inline-block;margin-left: 15px;font-size: 14px;color: #444;"></span>
+                  <br>
+                  <p style="font-weight:bold;margin-top:10px;word-wrap: break-word;" id="privatekey">{{data?.pk}}</p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary text-white" routerLink="/change-wallet" data-dismiss="modal">Unlock Wallet</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- <app-footer></app-footer> -->

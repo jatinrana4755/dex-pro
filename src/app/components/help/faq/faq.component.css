@@ -1,0 +1,56 @@
+/* .width{
+	margin: 20px;padding: 40px;
+ 
+}
+@media screen and (max-width:868px){
+	.width{
+		margin:5px;
+		padding: 5px;
+	}
+
+}
+.top{
+	margin-top: 3vh;
+
+}
+p{
+	color: #626262;
+	margin-bottom: 15px;
+	margin: 0 0 10px;
+	font-size:14.7px;
+
+}
+.style{
+	margin-top:6vh;
+	margin-bottom: 6vh;
+    font-weight:600;
+	color: #058c6c;
+	font-size: 35px;
+
+} */
+.faq-section{
+	padding: 40px;
+    margin-top: 50px;
+    background: url(../../../../assets/img/faq.jpg);
+	background-repeat: no-repeat;
+    background-color: rgba(181, 181, 181, 0.82);
+    background-blend-mode: overlay;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+
+}
+.heading{
+	font-weight: 600;
+	font-size:14px;
+    color: #02abff;
+}
+p{
+	font-size: 14px;
+	color: #444;
+}
+.card{
+	box-shadow: 2px 2px 10px #ddd;
+	border:none;
+	padding: 25px 40px;
+}
